@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form onsubmit="sendEmail(); reset(); return false;">
+        <h3>GET IN TOUCH</h3>
+        <!-- <i class="fa-sharp fa-solid fa-user"></i> -->
+        <input type="text" id="name" placeholder="Your name" required />
+        <!-- <i class="fa-sharp fa-solid fa-envelope"></i> -->
+        <input type="text" id="email" placeholder=" Email Id" required />
+
+        <input type="text" id="phone" placeholder="Phone no." required />
+
+        <textarea
+          id="message"
+          rows="4"
+          placeholder="Enter your Feedback"
+        ></textarea>
+        <button type="submit" onclick="openpopUp()">Send</button>
+      </form>
+    </div>
+    <div class="container2">
+      <div class="popup" id="popup">
+        <img src="tick.png" alt="success" />
+        <h2>Thank You.</h2>
+        <p>Your details have been received Successfully!</p>
+        <button type="button" onclick="closepopUp()">Ok</button>
+      </div>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+      function sendEmail() {
+        Email.send({
+          Host: 'smtp.elasticemail.com',
+          Username: 'vaibhavrandale800@gmail.com',
+          Password: '9F1D2572B3FC55A02140CA6AA3187675CC41',
+          To: 'vaibhavrandale800@gmail.com',
+          From: document.getElementById('email').value,
+          Subject: 'New Contact Form Enquiry',
+          Body:
+            'Name :' +
+            document.getElementById('name').value +
+            '<br> Email :' +
+            document.getElementById('email').value +
+            '<br> Phone :' +
+            document.getElementById('phone').value +
+            '<br> Message :' +
+            document.getElementById('message').value,
+        });
+      }
+    </script>
+
+    <script>
+      let popup = document.getElementById('popup');
+      function openpopUp() {
+        popup.classList.add('open-pop');
+      }
+      function closepopUp() {
+        popup.classList.remove('open-pop');
+      }
+    </script>
+  </body>
+</html>
